@@ -1,18 +1,19 @@
-# input_text_file = open(r"day1_input.txt")
-# print(input_text_file)
-# input_text_file.read
+import numpy as np
 
-# doing examples:
+filename = "day1_input.txt"
+data = np.loadtxt(filename, dtype=str)
 
-example = ["1abc", "pqr3stu8vwx", "a1b2c3d4e5f", "treb7uchet"]
+string =  data[1]
+sum_of_string = []
 
-string_name =  example[0]
-for element in string_name:
-    if isinstance(element, int) is True:
-        print("pass")
-        
+for char in string:
+    if char.isnumeric():
+        sum_of_string.append(int(char))
+
+number = [str(i) for i in sum_of_string]
+p = "".join(number)
+p = int(p)
+print(p)
 
 
 
-
-    
