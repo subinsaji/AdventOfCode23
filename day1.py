@@ -1,17 +1,25 @@
 import numpy as np
 import re
 
-filename = "day1_input.txt"
-string_list = np.loadtxt(filename, dtype=str)
+digits_array = np.array([])
 
-def sum_of_joined_digits(string_list):
-    numbers  = []
-    for s in string_list:
-        number = "".join(re.findall(r"\d", s))
-        if number:
-            numbers.append(int(number))
+with open("day1_input.txt", "r") as file:
+    for line in file:
+        first_digit_match = re.search(r"\d", line)
+        if first_digit_match:
+            first_digit = first_digit_match.group()
+        else:
+            continue
 
-    return sum(numbers)
+        last_digit_match = re.search(r"\d(?=[^\d]*$)", line)
+        if last_digit_match:
+            last_digit = last_digit_match.group()
+        else:
+            continue
 
+        combined_number = int(first_digit + last_digit)
+        digits_array = np.append(digits_array, combined_number)
 
-print(sum_of_joined_digits(string_list))
+array_sum = np.sum(digits_array)
+print(array_sum)
+
